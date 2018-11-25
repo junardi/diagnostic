@@ -21,5 +21,6 @@ class Login extends CI_Controller {
 	function test() 
 	{
 		echo md5("donnie");
-	}
+	}  
+	
 }

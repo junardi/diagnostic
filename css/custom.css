@@ -6,5 +6,77 @@
 -----------------------------------------------------------------*/
 
 
+.left {
+	float: left;
+}  
+
+.right {
+	float: right;
+}  
+
+.clear {
+	clear: both;
+}
+
+.content-wrap {
+	padding: 30px 0px;
+}  
+
+.custom-alert {
+	margin-top: 20px;
+}  
+
+.custom-line {
+	margin: 20px 0px;
+}  
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "|";
+}    
+
+form#create-patient-test-form label {
+	text-transform: none;
+}  
+
+.bold_price {
+	font-family: 'Raleway', sans-serif;  
+	margin-left: 10px;  
+	display: none;
+}
+
+.bold_price .total_price {
+	color: #000000;
+    font-size: 20px;
+    margin-left: 5px;
+}  
+
+.patient_name {
+	margin-bottom: 10px;
+}    
+
+.sectionHeading {
+	color: #007BFF;
+    font-weight: bold;
+}
+
+.breadcrumb .breadcrumb-item .current_menu {
+	color: #1ABC9C; 
+}
+
+.current_menu {
+	color: #1ABC9C; 
+}  
+
+button.disabled {
+	background-color: gray;   
+	cursor: none;
+}     
+
+form button.button.button-3d:hover.disabled:hover {
+	background-color: gray !important;
+}   
+
+
+
 
 
