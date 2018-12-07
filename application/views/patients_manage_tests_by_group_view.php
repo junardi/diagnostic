@@ -49,13 +49,12 @@
 						<tbody>
 						<?php foreach($individual_tests_data as $row): ?>
 							<tr>
-								
 								<td><?php echo $row->test; ?></td>
 								<td><?php echo ucwords($row->category); ?></td>
 								<td><?php echo $row->price; ?></td>    
 								<td><?php if(($row->test_created != "" ? true : false)) { echo mdate('%M %d, %Y %h:%i %a', $row->test_created); } ?></td>
 								<td><?php if(($row->test_updated != "" ? true : false)) { echo mdate('%M %d, %Y %h:%i %a', $row->test_updated); } ?></td>
-								<td>Set Result</td>
+								<td><a href="<?php echo current_url() . '?group_test_id=' . $current_group_test_id . '&patient_test_id=' . $row->patient_test_id . '&category=' . $row->category; ?>"> <?php if(isset($row->current_result_id)) {echo "Update Result";}else{echo 'Set Result';}   ?>  </a></td>
 								<td><a href="<?php echo base_url() . 'index.php/process/delete_data?patient_test_id=' . $row->patient_test_id . '&group_test_id=' . $current_group_test_id; ?>">Delete</a></td>	
 							</tr>
 						<?php endforeach; ?>

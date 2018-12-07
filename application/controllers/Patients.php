@@ -72,9 +72,9 @@ class Patients extends CI_Controller {
 			// below for the data in main view 
 			$data['individual_tests_data'] = $this->process_model->get_patient_laboratory_tests_by_group_test_id($group_test_id);
 
-			echo "<pre>";
-				print_r($data['individual_tests_data']);  
-			echo "</pre>";
+			// echo "<pre>";
+			// 	print_r($data['individual_tests_data']);  
+			// echo "</pre>";  
 
 			
 			// below for addition of only tests that are not added in a set of tests in a group     
@@ -101,10 +101,28 @@ class Patients extends CI_Controller {
 					}
 				}
 			}   
+			$data['not_added_tests_data'] = $get_tests_category;  
+
+			// below for getting current patient test id and category   
+			if($this->input->get('patient_test_id') && $this->input->get('category')) 
+			{
+				$data['current_patient_test_id'] = $this->input->get('patient_test_id');  
+				$data['current_category'] = $this->input->get('category');       
+
+				$check_test_result = $this->process_model->check_test_result($this->input->get('patient_test_id'), $this->input->get('category'));
+				if($check_test_result) 
+				{
+					$data['test_details'] = $this->process_model->get_test_details_by_patient_test_id($this->input->get('patient_test_id'), $this->input->get('category'));                                                             
+				}
+				else 
+				{
+					$data['test_details'] = $this->process_model->get_test_details_by_patient_test_id($this->input->get('patient_test_id'), null);
+				}
+				
+				
+			}
 
 			
-			$data['not_added_tests_data'] = $get_tests_category;      
-
 			// below load view 
 			$data['main_content'] = "patients_manage_tests_by_group_view";
 			$this->load->view('template/content', $data);  		

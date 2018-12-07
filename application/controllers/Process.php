@@ -386,6 +386,107 @@ class Process extends CI_Controller {
 	} // end common deleting of data  
 
 
+	public function update_test_result() 
+	{   
+
+		echo "<pre>";  
+			print_r($this->input->post());
+		echo "</pre>";
+		
+		$data = array(
+			'physician' => trim($this->input->post('physician')), 
+			'diagnosis' => trim($this->input->post('diagnosis')),    
+			'lab_no' => trim($this->input->post('lab_no')),      
+			'color' => trim($this->input->post('color')),  
+			'transparency' => trim($this->input->post('transparency')),  
+			'reaction' => trim($this->input->post('reaction')),  
+			'specific_gravity' => trim($this->input->post('specific_gravity')),  
+			'protein' => trim($this->input->post('protein')),  
+			'sugar' => trim($this->input->post('sugar')),  
+			'bile_pigment' => trim($this->input->post('bile_pigment')),  
+			'diacetic_acid' => trim($this->input->post('diacetic_acid')),    
+			'ketone' => trim($this->input->post('ketone')),  
+			'nitrite' => trim($this->input->post('nitrite')),  
+			'urobilinogen' => trim($this->input->post('urobilinogen')),  
+			'rbc' => trim($this->input->post('rbc')),   
+			'pus_cells' => trim($this->input->post('pus_cells')),  
+			'waxy_cast' => trim($this->input->post('waxy_cast')),   
+			'fine_granular_cast' => trim($this->input->post('fine_granular_cast')),  
+			'coarse_granular_cast' => trim($this->input->post('coarse_granular_cast')),  
+			'rbc_cast' => trim($this->input->post('rbc_cast')),  
+			'wbc_cast' => trim($this->input->post('wbc_cast')),  
+			'hyaline_cast' => trim($this->input->post('hyaline_cast')),  
+			'squamous_epithelial_cells' => trim($this->input->post('squamous_epithelial_cells')),  
+			'round_epithelial_cells' => trim($this->input->post('round_epithelial_cells')),   
+			'abnormal_crystals' => trim($this->input->post('abnormal_crystals')),   
+			'amorphous_urates' => trim($this->input->post('amorphous_urates')),  
+			'amorphous_phosphates' => trim($this->input->post('amorphous_phosphates')),    
+			'calcium_carbonate' => trim($this->input->post('calcium_carbonate')),    
+			'calcium_oxalate' => trim($this->input->post('calcium_oxalate')),
+			'triple_phosphates' => trim($this->input->post('triple_phosphates')),    
+			'uric_acid' => trim($this->input->post('uric_acid')),     
+			'normal_crystals_others' => trim($this->input->post('normal_crystals_others')),  
+			'mucous_threads' => trim($this->input->post('mucous_threads')),  
+			'yeast_cells' => trim($this->input->post('yeast_cells')),  
+			'bacteria' => trim($this->input->post('bacteria')),  
+			'trichomonas_vaginalis' => trim($this->input->post('trichomonas_vaginalis')),  
+			'others' => trim($this->input->post('others')),  
+			'medical_technologist' => trim($this->input->post('medical_technologist')),    
+			'patient_test_id' => $this->input->post('patient_test_id'),	   
+			'group_test_id' => $this->input->post('group_test_id'),		  
+			'patient_id' => $this->input->post('patient_id'),  
+			'test_id' => $this->input->post('test_id'), 
+			'result_created' => time(),   
+			'result_updated' => ""
+		);      
+
+		$category = $this->input->post('category');   
+		$group_test_id = $this->input->post('group_test_id');       
+		$test = $this->input->post('test');     
+
+		$test_action = $this->input->post('set-test-result-form-submit');
+
+		switch($category) 
+		{
+			case 'urinalysis':   
+				if($test_action == "set") 
+				{
+					$insert_data = $this->process_model->insert_data('urinalysis_result', $data);
+				}
+				else 
+				{
+					$update_data_by_id = $this->process_model->update_data_by_id('urinalysis_result', $data, $this->input->post('urinalysis_result_id'), 'urinalysis_result_id');                                                                                                  
+				}
+				
+				break; 
+		}  
+
+
+		if($insert_data || $update_data_by_id) 
+		{
+			$message = "
+				<div class='custom-alert alert alert-success'>
+				  <i class='icon-gift'></i><strong>Well done!</strong> Updated Result for <strong>{$test}</strong>.
+				</div>  
+			";						
+		}
+		else 
+		{
+			$message = "
+				<div class='custom-alert alert alert-danger'>
+					  <i class='icon-remove-sign'></i><strong>Oh snap!</strong> Update Result Failed for <strong>{$test}</strong>.                             
+				</div>
+			";
+		}     
+
+
+		$this->session->set_flashdata('message', $message);    
+		$redirect_value = "patients/manage?group_test_id=" . $group_test_id;
+		redirect($redirect_value);   
+
+	}  
+
+
 
 }  
 

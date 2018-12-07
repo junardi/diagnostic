@@ -2,9 +2,9 @@ $( function() {
 
 	$('#datatable1').dataTable();   
 
-	$("form input").prop('required',true);  
-	$("form select").prop('required',true);  
-	$("form input[type='checkbox']").removeAttr('required');  
+	$(".has-required form input").prop('required',true);  
+	$(".has-required form select").prop('required',true);  
+	$(".has-required form input[type='checkbox']").removeAttr('required');  
 	$("#create-patient-test-form .col_half:nth-child(even)").addClass('col_last');
 
 	// below for calculating price in checkbox       

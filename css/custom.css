@@ -76,7 +76,27 @@ form button.button.button-3d:hover.disabled:hover {
 	background-color: gray !important;
 }   
 
+.test-result-columns {  
+	font-family: 'Raleway', sans-serif;  
+	margin-bottom: 30px; 
+}    
 
+form .test-result-columns p {
+	margin-bottom: 10px;
+}   
+
+form .test-result-columns .bold {
+	font-weight: bold;
+}
+
+form .input-group .input-group-addon p {
+	margin: 0px;
+    padding: 10px 0px 10px 5px;
+}  
+
+form .input-group > p {
+	width: 80%;
+}
 
 
 
